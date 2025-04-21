@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import HeartAnimation from "@/components/HeartAnimation";
 import HeartRateControls from "@/components/HeartRateControls";
 import ServerToggle from "@/components/ServerToggle";
@@ -6,66 +6,21 @@ import ServerToggle from "@/components/ServerToggle";
 import AppFooter from "@/components/AppFooter";
 import AppHeader from "@/components/AppHeader";
 import { defaultHeartRate } from "@/lib/globals";
+import { useWebSocket } from "./hooks/useWebSocket";
 
 export default function Home() {
   const [heartRate, setHeartRate] = useState(defaultHeartRate);
   const [serverHeartRate, setServerHeartRate] = useState(false);
 
-  const prevServerHeartRateRef = useRef(false);
-  const socketRef = useRef<WebSocket | null>(null);
+  const handleSocketMessage = (message: string) => {
+    const serverValue = parseInt(message, 10);
 
-  const closeSocketMockConnection = () => {
-    if (socketRef.current) {
-      console.log("Closing WebSocket...");
-      socketRef.current.close();
-      socketRef.current = null;
+    if (!isNaN(serverValue)) {
+      setHeartRate(serverValue);
     }
   };
 
-  const initSocket = () => {
-    console.log("Init socket");
-
-    const socket = new WebSocket("ws://localhost:5173/ws");
-
-    socket.addEventListener("open", () => {
-      console.log("🔑 WebSocket connection opened");
-    });
-
-    socket.addEventListener("message", (event) => {
-      console.log("📩 Message:", event.data);
-
-      const serverValue = parseInt(event.data, 10);
-
-      if (!isNaN(serverValue)) {
-        setHeartRate(serverValue);
-      }
-    });
-
-    socket.addEventListener("close", () => {
-      console.log("🔒 WebSocket connection closed");
-    });
-
-    socketRef.current = socket;
-  };
-
-  useEffect(() => {
-    const wasServerHeartRate = prevServerHeartRateRef.current;
-    const isServerHeartRate = serverHeartRate;
-
-    if (!wasServerHeartRate && isServerHeartRate) {
-      initSocket();
-    }
-
-    if (wasServerHeartRate && !isServerHeartRate) {
-      closeSocketMockConnection();
-    }
-
-    prevServerHeartRateRef.current = isServerHeartRate;
-
-    return () => {
-      closeSocketMockConnection();
-    };
-  }, [serverHeartRate]);
+  useWebSocket(serverHeartRate, handleSocketMessage);
 
   return (
     <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
