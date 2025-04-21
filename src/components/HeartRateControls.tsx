@@ -1,8 +1,10 @@
 import type React from "react";
+import { ButtonsRow } from "./ButtonsRow";
 
 import { useState } from "react";
 import { Button, Label, Input } from "@/components/ui";
 import { defaultHeartRate } from "@/lib/globals";
+import { NonEmptyNumberArray } from "@/types";
 
 interface HeartRateControlsProps {
   heartRate: number;
@@ -44,8 +46,8 @@ export default function HeartRateControls({
     }
   };
 
-  const incrementButtons = [1, 10, 50];
-  const decrementButtons = [-1, -10, -50];
+  const incrementButtons = [1, 10, 50] as NonEmptyNumberArray;
+  const decrementButtons = [-1, -10, -50] as NonEmptyNumberArray;
 
   return (
     <div className="space-y-4">
@@ -68,20 +70,13 @@ export default function HeartRateControls({
       <div className="space-y-2">
         <Label>Increment / Decrement</Label>
 
-        <div className="flex flex-col sm:flex-row justify-center flex-wrap gap-2">
-          <div className="flex flex-col sm:flex-row gap-2 order-1 sm:order-3">
-            {incrementButtons.map((value) => (
-              <Button
-                key={`inc-${value}`}
-                variant="outline"
-                size="sm"
-                onClick={() => updateHeartRate(heartRate + value)}
-                disabled={disabled}
-              >
-                +{value}
-              </Button>
-            ))}
-          </div>
+        <div className="flex flex-col sm:flex-row justify-center gap-2 flex-nowrap">
+          <ButtonsRow
+            controlButtons={incrementButtons}
+            onButtonClick={(value) => updateHeartRate(heartRate + value)}
+            disabled={disabled}
+            className="flex-col sm:flex-row sm:items-center order-1 sm:order-3"
+          />
 
           <Button
             disabled={disabled}
@@ -91,19 +86,12 @@ export default function HeartRateControls({
             Reset
           </Button>
 
-          <div className="flex flex-col sm:flex-row gap-2 order-3 sm:order-1">
-            {decrementButtons.map((value) => (
-              <Button
-                key={`dec-${value}`}
-                variant="outline"
-                size="sm"
-                onClick={() => updateHeartRate(heartRate + value)}
-                disabled={disabled}
-              >
-                {value}
-              </Button>
-            ))}
-          </div>
+          <ButtonsRow
+            controlButtons={decrementButtons}
+            onButtonClick={(value) => updateHeartRate(heartRate + value)}
+            disabled={disabled}
+            className="flex-col sm:flex-row sm:items-center gap-2 order-3 sm:order-1"
+          />
         </div>
       </div>
     </div>
