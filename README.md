@@ -1,70 +1,62 @@
-❤️ Heart Rate App
+# ❤️ Heart Rate App
+
 A simple heart rate visualizer built with:
 
-⚡ Vite
+- ⚡ **Vite**
+- ⚛️ **React 19**
+- 🧩 **TypeScript**
+- 🎨 **ShadCN UI** (Radix + TailwindCSS)
+- 🛡 **Mock Service Worker (MSW)**
+- 📦 **pnpm** for package management
 
-⚛️ React 19
+## 🚀 Getting Started
 
-🧩 TypeScript
-
-🎨 ShadCN UI (Radix + TailwindCSS)
-
-🛡 Mock Service Worker (MSW)
-
-📦 pnpm for package management
-
-🚀 Getting Started
-
-1. Install dependencies
-   bash
-   Copy
-   Edit
+1. **Install dependencies**
+   ```bash
    pnpm install
-2. Run the app locally
-   bash
-   Copy
-   Edit
+   ```
+2. **Run the app locally**
+   ```bash
    pnpm dev
-   The app will be available at http://localhost:5173.
+   ```
+   The app will be available at `http://localhost:5173`.
 
-📦 Scripts
+## 📦 Scripts
 
-Command Description
-pnpm dev Start the development server
-pnpm build Build the app for production
-pnpm preview Preview the production build
-pnpm lint Run ESLint to check code style
-🛠 Tech Stack
-React 19 with Functional Components
+| Command        | Description                    |
+| -------------- | ------------------------------ |
+| `pnpm dev`     | Start the development server   |
+| `pnpm build`   | Build the app for production   |
+| `pnpm preview` | Preview the production build   |
+| `pnpm lint`    | Run ESLint to check code style |
 
-TypeScript for type safety
+## 🛠 Tech Stack
 
-Vite for fast development experience
+- React 19 with Functional Components
+- TypeScript for type safety
+- Vite for a fast development experience
+- TailwindCSS and ShadCN UI for styling
+- Mock Service Worker (MSW) for WebSocket mocking
+- pnpm as the package manager
 
-TailwindCSS and ShadCN UI for styling
+## 📂 Project Structure
 
-Mock Service Worker (MSW) for WebSocket mocking
-
-pnpm as the package manager
-
-📂 Project Structure
-bash
-Copy
-Edit
+```bash
 src/
-├── components/ # UI components
-├── hooks/ # Custom hooks (e.g., useWebSocket)
-├── lib/ # Global constants and utility functions
-├── mocks/ # MSW handlers and browser setup
-├── assets/ # Static assets (icons, images)
-└── types/ # TypeScript types
-📜 License
-This project is for learning and demo purposes.
-Feel free to fork and customize!
+├── assets/      # Static assets (icons, images)
+├── components/  # UI components
+├── hooks/       # Custom hooks (e.g., useWebSocket)
+├── lib/         # Global constants and utility functions
+├── mocks/       # MSW handlers and browser setup
+└── types/       # TypeScript types
+```
 
-✨ Notes
-Uses WebSocket mock server powered by MSW.
+## 📜 License
 
-All heart rate values are clamped between 26 BPM and 250 BPM.
+This project is for learning and demo purposes. Feel free to fork and customize!
 
-Heart color changes based on heart rate thresholds.
+## ✨ Notes
+
+- Uses a WebSocket mock server powered by MSW.
+- All heart rate values are clamped between 26 BPM and 250 BPM.
+- Heart color changes based on heart rate thresholds.
