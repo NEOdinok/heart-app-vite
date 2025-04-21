@@ -1,7 +1,7 @@
 {
   "name": "heart-app-vite",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,7 +16,7 @@
     "@tailwindcss/vite": "^4.1.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.501.0",
+    "lucide-react": "^0.502.0",
     "msw": "2.6.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -36,6 +36,7 @@
     "globals": "^16.0.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.26.1",
-    "vite": "^5.2.10"
+    "vite": "^5.2.10",
+    "vite-plugin-svgr": "^4.3.0"
   }
 }
