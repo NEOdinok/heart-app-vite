@@ -10,14 +10,12 @@ export const useWebSocket = (
 
   const closeConnection = () => {
     if (socketRef.current) {
-      console.log("Closing WebSocket...");
       socketRef.current.close();
       socketRef.current = null;
     }
   };
 
   const initConnection = () => {
-    console.log("Initializing WebSocket...");
     const socket = new WebSocket(wsUrl);
 
     socket.addEventListener("open", () => {
