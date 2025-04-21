@@ -1,16 +1,16 @@
 import { cn } from "@/lib/utils";
 import { useMemo } from "react";
 import { IconHeart } from "@/assets";
+import { lowHeartRateThreshold, highHeartRateThreshold } from "@/lib/globals";
 
 interface HeartAnimationProps {
   heartRate: number;
 }
 
 export default function HeartAnimation({ heartRate }: HeartAnimationProps) {
-  // Determine heart color based on heart rate
   const getHeartColor = () => {
-    if (heartRate < 111) return "text-green-500 ";
-    if (heartRate <= 180) return "text-yellow-500 ";
+    if (heartRate < lowHeartRateThreshold) return "text-green-500 ";
+    if (heartRate <= highHeartRateThreshold) return "text-yellow-500 ";
     return "text-red-500";
   };
 
@@ -18,9 +18,7 @@ export default function HeartAnimation({ heartRate }: HeartAnimationProps) {
 
   return (
     <div className="relative flex items-center justify-center text-9xl transition-colors duration-300">
-      {/* Heart itself */}
       <div
-        // className={cn(getHeartColor())}
         style={{
           animation: `pulse ${animationDuration}s ease-in-out infinite`,
         }}
@@ -33,24 +31,9 @@ export default function HeartAnimation({ heartRate }: HeartAnimationProps) {
         />
       </div>
 
-      {/* Centered text over heart */}
-      <div
-        className={cn(
-          "absolute text-center text-2xl font-bold text-white"
-          // getHeartColor()
-        )}
-      >
+      <div className={cn("absolute text-center text-2xl font-bold text-white")}>
         {heartRate} BPM
       </div>
     </div>
   );
-}
-
-{
-  /* <div
-    className={cn("w-32 h-32", getHeartColor())}
-    style={{
-      animation: `pulse ${animationDuration}s ease-in-out infinite`,
-    }}
-  ></div> */
 }

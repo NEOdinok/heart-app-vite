@@ -6,6 +6,7 @@ import ServerToggle from "@/components/ServerToggle";
 import AppFooter from "@/components/AppFooter";
 import AppHeader from "@/components/AppHeader";
 import { defaultHeartRate } from "@/lib/globals";
+import { clampHeartRate } from "./lib/utils";
 import { useWebSocket } from "./hooks/useWebSocket";
 
 export default function Home() {
@@ -16,7 +17,7 @@ export default function Home() {
     const serverValue = parseInt(message, 10);
 
     if (!isNaN(serverValue)) {
-      setHeartRate(serverValue);
+      setHeartRate(clampHeartRate(serverValue));
     }
   };
 
@@ -40,7 +41,9 @@ export default function Home() {
           />
           <HeartRateControls
             heartRate={heartRate}
-            setHeartRate={setHeartRate}
+            onHeartRateChange={(newRate) => {
+              setHeartRate(clampHeartRate(newRate));
+            }}
             disabled={serverHeartRate}
           />
         </div>
