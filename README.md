@@ -1,54 +1,70 @@
-# React + TypeScript + Vite
+❤️ Heart Rate App
+A simple heart rate visualizer built with:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+⚡ Vite
 
-Currently, two official plugins are available:
+⚛️ React 19
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🧩 TypeScript
 
-## Expanding the ESLint configuration
+🎨 ShadCN UI (Radix + TailwindCSS)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🛡 Mock Service Worker (MSW)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+📦 pnpm for package management
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🚀 Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Install dependencies
+   bash
+   Copy
+   Edit
+   pnpm install
+2. Run the app locally
+   bash
+   Copy
+   Edit
+   pnpm dev
+   The app will be available at http://localhost:5173.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+📦 Scripts
+
+Command Description
+pnpm dev Start the development server
+pnpm build Build the app for production
+pnpm preview Preview the production build
+pnpm lint Run ESLint to check code style
+🛠 Tech Stack
+React 19 with Functional Components
+
+TypeScript for type safety
+
+Vite for fast development experience
+
+TailwindCSS and ShadCN UI for styling
+
+Mock Service Worker (MSW) for WebSocket mocking
+
+pnpm as the package manager
+
+📂 Project Structure
+bash
+Copy
+Edit
+src/
+├── components/ # UI components
+├── hooks/ # Custom hooks (e.g., useWebSocket)
+├── lib/ # Global constants and utility functions
+├── mocks/ # MSW handlers and browser setup
+├── assets/ # Static assets (icons, images)
+└── types/ # TypeScript types
+📜 License
+This project is for learning and demo purposes.
+Feel free to fork and customize!
+
+✨ Notes
+Uses WebSocket mock server powered by MSW.
+
+All heart rate values are clamped between 26 BPM and 250 BPM.
+
+Heart color changes based on heart rate thresholds.
