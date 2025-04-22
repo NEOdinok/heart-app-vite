@@ -10,10 +10,6 @@ interface HeartRateControlsProps {
   disabled: boolean;
 }
 
-const clampHeartRate = (rate: number) => {
-  return Math.min(Math.max(rate, 26), 250);
-};
-
 export default function HeartRateControls({
   heartRate,
   onHeartRateChange,
@@ -68,9 +64,7 @@ export default function HeartRateControls({
         <div className="flex flex-col sm:flex-row justify-center gap-2 flex-nowrap">
           <ButtonsRow
             controlButtons={incrementButtons}
-            onButtonClick={(value) =>
-              onHeartRateChange(clampHeartRate(heartRate + value))
-            }
+            onButtonClick={(value) => onHeartRateChange(heartRate + value)}
             disabled={disabled}
             className="flex-col sm:flex-row sm:items-center order-1 sm:order-3"
           />
@@ -85,9 +79,7 @@ export default function HeartRateControls({
 
           <ButtonsRow
             controlButtons={decrementButtons}
-            onButtonClick={(value) =>
-              onHeartRateChange(clampHeartRate(heartRate + value))
-            }
+            onButtonClick={(value) => onHeartRateChange(heartRate + value)}
             disabled={disabled}
             className="flex-col sm:flex-row sm:items-center gap-2 order-3 sm:order-1"
           />
